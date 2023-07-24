@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>cinemapedia.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>arm64</string>
+			</array>
+			<key>buildNumber</key>
+			<string>0.1.0</string>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>E2BD52BDDEE0656826EBC4AB6103EAD8829EE1B3</string>
+				<key>dateExpires</key>
+				<string>14-04-24</string>
+				<key>type</key>
+				<string>Apple Development</string>
+			</dict>
+			<key>embeddedBinaries</key>
+			<array>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>arm64</string>
+					</array>
+					<key>buildNumber</key>
+					<string>1.0</string>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>E2BD52BDDEE0656826EBC4AB6103EAD8829EE1B3</string>
+						<key>dateExpires</key>
+						<string>14-04-24</string>
+						<key>type</key>
+						<string>Apple Development</string>
+					</dict>
+					<key>name</key>
+					<string>App.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>MMAX8T5244</string>
+						<key>name</key>
+						<string>Cristian Vargas</string>
+					</dict>
+					<key>versionNumber</key>
+					<string>1.0</string>
+				</dict>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>arm64</string>
+					</array>
+					<key>buildNumber</key>
+					<string>1.0</string>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>E2BD52BDDEE0656826EBC4AB6103EAD8829EE1B3</string>
+						<key>dateExpires</key>
+						<string>14-04-24</string>
+						<key>type</key>
+						<string>Apple Development</string>
+					</dict>
+					<key>name</key>
+					<string>Flutter.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>MMAX8T5244</string>
+						<key>name</key>
+						<string>Cristian Vargas</string>
+					</dict>
+					<key>versionNumber</key>
+					<string>1.0</string>
+				</dict>
+			</array>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>MMAX8T5244.cl.vishanti.cinemapedia</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>MMAX8T5244</string>
+				<key>get-task-allow</key>
+				<true/>
+			</dict>
+			<key>name</key>
+			<string>Runner.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>f66b4bb6-3e79-45ad-b223-9aa9629306e0</string>
+				<key>dateExpires</key>
+				<string>06-06-24</string>
+				<key>name</key>
+				<string>iOS Team Provisioning Profile: *</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>MMAX8T5244</string>
+				<key>name</key>
+				<string>Cristian Vargas</string>
+			</dict>
+			<key>versionNumber</key>
+			<string>0.1.0</string>
+		</dict>
+	</array>
+</dict>
+</plist>

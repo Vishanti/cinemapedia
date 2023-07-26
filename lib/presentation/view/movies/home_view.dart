@@ -17,19 +17,23 @@ class HomeViewState extends ConsumerState<HomeView> {
   void initState() {
     super.initState();
     ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
-    ref.read(popularMoviesProvider.notifier).loadNextPage();
     ref.read(upcomingMoviesProvider.notifier).loadNextPage();
     ref.read(topRatedMoviesProvider.notifier).loadNextPage();
   }
 
+  static const messages = <String>[
+    'Cargando Peliculas en cine',
+    'Cargando Proximas Peliculas',
+    'Cargando Mejores calificadas',
+  ];
+
   @override
   Widget build(BuildContext context) {
     final initialLoading = ref.watch(initialLoadingProvider);
-    if (initialLoading) return const FullScreenLoader();
+    if (initialLoading) return const FullScreenLoader(messages: messages);
 
     final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
     final slideShowMovies = ref.watch(moviesSlideshowProvider);
-    final popularMovies = ref.watch(popularMoviesProvider);
     final upcomingMovies = ref.watch(upcomingMoviesProvider);
     final topRatedMovies = ref.watch(topRatedMoviesProvider);
 
@@ -54,14 +58,17 @@ class HomeViewState extends ConsumerState<HomeView> {
                 ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
               },
             ),
-            MovieHorizontalListview(
-              movies: popularMovies,
-              title: 'Populares',
-              // subTitle: 'Este mes',
-              loadNextPage: () {
-                ref.read(popularMoviesProvider.notifier).loadNextPage();
-              },
-            ),
+
+            //* Ya no estará aquí, ahora es parte del menú inferior
+            // MovieHorizontalListview(
+            //   movies: popularMovies,
+            //   title: 'Populares',
+            //   // subTitle: 'Este mes',
+            //   loadNextPage: () {
+            //     ref.read(popularMoviesProvider.notifier).loadNextPage();
+            //   },
+            // ),
+
             MovieHorizontalListview(
               movies: upcomingMovies,
               title: 'Proximamente',

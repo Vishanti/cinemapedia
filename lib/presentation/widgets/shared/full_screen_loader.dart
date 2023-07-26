@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
 
 class FullScreenLoader extends StatelessWidget {
-  const FullScreenLoader({super.key});
+  final List<String> messages;
+  const FullScreenLoader({super.key, required this.messages});
 
   @override
   Widget build(BuildContext context) {
-    final messages = <String>[
-      'Cargando Peliculas',
-      'Comprando palomitas de maíz',
-      'Cargando Polular',
-      'Cargando Mejores calificadas',
-    ];
-
     Stream<String> getLoadingMessages() {
       return Stream.periodic(const Duration(milliseconds: 1200), (step) {
         return messages[step];

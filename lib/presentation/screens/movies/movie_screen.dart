@@ -55,7 +55,7 @@ class MovieScreenState extends ConsumerState<MovieScreen> {
 
 class _MovieDetails extends StatelessWidget {
   final Movie movie;
-  const _MovieDetails({super.key, required this.movie});
+  const _MovieDetails({required this.movie});
 
   @override
   Widget build(BuildContext context) {
@@ -122,7 +122,7 @@ class _MovieDetails extends StatelessWidget {
 
 class _ActorByMovie extends ConsumerWidget {
   final String movieId;
-  const _ActorByMovie({super.key, required this.movieId});
+  const _ActorByMovie({required this.movieId});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -181,12 +181,19 @@ class _ActorByMovie extends ConsumerWidget {
   }
 }
 
-class _CustomSliverAppBar extends StatelessWidget {
+final isFavoriteProvider =
+    FutureProvider.family.autoDispose((ref, int movieId) {
+  final localStorageRepository = ref.watch(localStorageRepositoryProvider);
+  return localStorageRepository.isMovieFavorite(movieId); //si esta en favoritos
+});
+
+class _CustomSliverAppBar extends ConsumerWidget {
   final Movie movie;
-  const _CustomSliverAppBar({super.key, required this.movie});
+  const _CustomSliverAppBar({required this.movie});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isFavoriteFuture = ref.watch(isFavoriteProvider(movie.id));
     final size = MediaQuery.of(context).size;
     return SliverAppBar(
       backgroundColor: Colors.black,
@@ -194,10 +201,19 @@ class _CustomSliverAppBar extends StatelessWidget {
       foregroundColor: Colors.white,
       actions: [
         IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.favorite_border),
-          // icon: const Icon(Icons.favorite_rounded, color: Colors.red),
-        )
+            onPressed: () async {
+              // ref.read(localStorageRepositoryProvider).toggleFavorite(movie);
+              await ref
+                  .read(favoriteMoviesProvider.notifier)
+                  .toggleFavorite(movie);
+              ref.invalidate(isFavoriteProvider(movie.id));
+            },
+            icon: isFavoriteFuture.when(
+                data: (isFavorite) => isFavorite
+                    ? const Icon(Icons.favorite_rounded, color: Colors.red)
+                    : const Icon(Icons.favorite_border),
+                error: (_, __) => throw UnimplementedError(),
+                loading: () => const CircularProgressIndicator(strokeWidth: 2)))
       ],
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -243,8 +259,7 @@ class _CustomGradient extends StatelessWidget {
   final List<double> stops;
   final List<Color> colors;
   const _CustomGradient(
-      {super.key,
-      required this.begin,
+      {required this.begin,
       required this.end,
       required this.stops,
       required this.colors});

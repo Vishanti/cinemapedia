@@ -113,7 +113,7 @@ class _MovieItem extends StatelessWidget {
   final Movie movie;
   final Function onMovieSelected;
   const _MovieItem(
-      {super.key, required this.movie, required this.onMovieSelected});
+      {required this.movie, required this.onMovieSelected});
 
   @override
   Widget build(BuildContext context) {
